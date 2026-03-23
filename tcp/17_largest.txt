@@ -1,0 +1,36 @@
+
+import java.io.*;
+import java.net.*;
+
+class Server {
+    public static void main(String[] args) throws Exception {
+        ServerSocket ss = new ServerSocket(5000);
+        System.out.println("Server started...");
+        Socket s = ss.accept();
+        System.out.println("Client connected");
+
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+
+        int n=dis.readInt(); int max=Integer.MIN_VALUE; for(int i=0;i<n;i++){int x=dis.readInt(); if(x>max)max=x;} dos.writeInt(max);
+
+        s.close();
+        ss.close();
+    }
+}
+
+class Client {
+    public static void main(String[] args) throws Exception {
+        Socket s = new Socket("localhost",5000);
+
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter count: "); int n=Integer.parseInt(br.readLine()); dos.writeInt(n); for(int i=0;i<n;i++){dos.writeInt(Integer.parseInt(br.readLine()));}
+
+        System.out.println(dis.readInt());
+
+        s.close();
+    }
+}

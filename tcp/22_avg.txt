@@ -1,0 +1,36 @@
+
+import java.io.*;
+import java.net.*;
+
+class Server {
+    public static void main(String[] args) throws Exception {
+        ServerSocket ss = new ServerSocket(5000);
+        System.out.println("Server started...");
+        Socket s = ss.accept();
+        System.out.println("Client connected");
+
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+
+        int a=dis.readInt(),b=dis.readInt(); dos.writeDouble((a+b)/2.0);
+
+        s.close();
+        ss.close();
+    }
+}
+
+class Client {
+    public static void main(String[] args) throws Exception {
+        Socket s = new Socket("localhost",5000);
+
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Enter 2 numbers:"); int a=Integer.parseInt(br.readLine()); int b=Integer.parseInt(br.readLine()); dos.writeInt(a); dos.writeInt(b);
+
+        System.out.println(dis.readDouble());
+
+        s.close();
+    }
+}

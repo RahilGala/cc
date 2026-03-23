@@ -1,0 +1,36 @@
+
+import java.io.*;
+import java.net.*;
+
+class Server {
+    public static void main(String[] args) throws Exception {
+        ServerSocket ss = new ServerSocket(5000);
+        System.out.println("Server started...");
+        Socket s = ss.accept();
+        System.out.println("Client connected");
+
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+
+        double a=dis.readDouble(); dos.writeDouble(6*a*a);
+
+        s.close();
+        ss.close();
+    }
+}
+
+class Client {
+    public static void main(String[] args) throws Exception {
+        Socket s = new Socket("localhost",5000);
+
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter side: "); double a=Double.parseDouble(br.readLine()); dos.writeDouble(a);
+
+        System.out.println(dis.readDouble());
+
+        s.close();
+    }
+}
