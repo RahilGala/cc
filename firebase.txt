@@ -27,4 +27,3 @@ firebase_admin.initialize_app(cred, {"databaseURL": "[https://myfirstpractical-8
 ref = db.reference("input")
 ref.push({"value": 75})
 print("Sample data sent to Firebase successfully")
-If this still isn't quite right, let me know exactly how you want it to look! Would you prefer it all combined into a single paragraph, formatted for a specific file type like CSV, or something else entirely?
