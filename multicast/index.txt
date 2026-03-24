@@ -1,0 +1,39 @@
+name, short description
+
+1_reverse.txt, Reverse a number
+2_greatest.txt, Greatest of three numbers
+3_fibo.txt, Fibonacci series
+4_factorial.txt, Factorial of a number
+5_primes.txt, Prime numbers in a given range
+6_armstrong.txt, Check Armstrong number
+7_palindrome.txt, Check palindrome number
+8_pal_range.txt, Palindrome numbers in range
+9_sum.txt, Sum of first n natural numbers
+10_oddeven.txt, Check odd or even
+11_vowel.txt, Check vowel or consonant
+12_add.txt, Add two integers
+13_gcd.txt, GCD of two numbers
+14_lcm.txt, LCM of two numbers
+15_prime.txt, Check prime number
+16_digits.txt, Count digits in a number
+17_largest.txt, Find largest element in list
+18_sumlist.txt, Sum of list elements
+20_multiply.txt, Multiply two floating numbers
+21_div.txt, Quotient and remainder
+22_avg.txt, Average of two numbers
+
+23a_bin.txt, Decimal to Binary
+23b_oct.txt, Decimal to Octal
+23c_hex.txt, Decimal to Hexadecimal
+
+24a_bin_dec.txt, Binary to Decimal
+24b_oct_dec.txt, Octal to Decimal
+24c_hex_dec.txt, Hexadecimal to Decimal
+
+25_circle.txt, Area and circumference of circle
+26_triangle.txt, Area of equilateral triangle
+27_cylinder.txt, Surface area of cylinder
+
+28a_cube.txt, Surface area of cube
+28b_square.txt, Area of square
+28c_cone.txt, Surface area of cone
