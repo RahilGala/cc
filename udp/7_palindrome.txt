@@ -1,0 +1,44 @@
+
+import java.net.*;
+import java.io.*;
+
+class Server {
+    public static void main(String[] args) throws Exception {
+        DatagramSocket ds = new DatagramSocket(5000);
+        byte[] receive = new byte[1024];
+
+        DatagramPacket dp = new DatagramPacket(receive, receive.length);
+        ds.receive(dp);
+
+        String input = new String(dp.getData(), 0, dp.getLength());
+
+        int n=Integer.parseInt(input),t=n,r=0;while(t>0){r=r*10+t%10;t/=10;}String result=(r==n)?"Palindrome":"Not Palindrome";
+
+        byte[] send = result.getBytes();
+        DatagramPacket dpSend = new DatagramPacket(send, send.length, dp.getAddress(), dp.getPort());
+        ds.send(dpSend);
+
+        ds.close();
+    }
+}
+
+class Client {
+    public static void main(String[] args) throws Exception {
+        DatagramSocket ds = new DatagramSocket();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter number: "); String msg=br.readLine();
+
+        byte[] send = msg.getBytes();
+        DatagramPacket dp = new DatagramPacket(send, send.length, InetAddress.getLocalHost(), 5000);
+        ds.send(dp);
+
+        byte[] receive = new byte[1024];
+        DatagramPacket dp2 = new DatagramPacket(receive, receive.length);
+        ds.receive(dp2);
+
+        System.out.println("Output: " + new String(dp2.getData(),0,dp2.getLength()));
+
+        ds.close();
+    }
+}
