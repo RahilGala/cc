@@ -1,0 +1,30 @@
+Step 1: Login page of the Firebase.
+Step 2: Create a project and name the project also accept the terms.
+Step 3: Click continue.
+Step 4: Set the location and click on create project.
+Step 5: Click continue.
+Step 6: On the left panel click on build tab and click on realtime database.
+Step 7: Click on Create Database.
+Step 8: Select the location of the database and click on next.
+Step 9: Start the database in "Test Mode".
+Step 10: After creating the database go to project setting from the left panel.
+Step 11: Go to the Service accounts, select "Python" as the language and click on "Generate new private key".
+Step 12: Click on "Generate key".
+Step 13: Save the JSON file.
+Step 14: Go to Google Colab and create new notebook.
+Step 15: Upload the JSON file which we download from the Firebase in the left panel.
+Step 16: Download the "Firebase" by writing !pip install firebase-admin.
+Step 17: Change the name of the JSON file to "ServiceAccountKey.json".
+Step 18: Write the following code.
+Step 19: After successfully running the code it should reflect in the firebase database.
+
+Python script from Step 18:
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+cred = credentials.Certificate("ServiceAccountKey.json")
+firebase_admin.initialize_app(cred, {"databaseURL": "[https://myfirstpractical-832dd-default-rtdb.asia-southeast1.firebasedatabase.app/](https://myfirstpractical-832dd-default-rtdb.asia-southeast1.firebasedatabase.app/)"})
+ref = db.reference("input")
+ref.push({"value": 75})
+print("Sample data sent to Firebase successfully")
+If this still isn't quite right, let me know exactly how you want it to look! Would you prefer it all combined into a single paragraph, formatted for a specific file type like CSV, or something else entirely?
