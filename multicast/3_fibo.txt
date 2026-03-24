@@ -1,0 +1,51 @@
+
+import java.net.*;
+import java.io.*;
+
+class Server {
+    public static void main(String[] args) throws Exception {
+        MulticastSocket ms = new MulticastSocket(5000);
+        InetAddress group = InetAddress.getByName("230.0.0.1");
+        ms.joinGroup(group);
+
+        byte[] buf = new byte[1024];
+        DatagramPacket dp = new DatagramPacket(buf, buf.length);
+        ms.receive(dp);
+
+        String input = new String(dp.getData(), 0, dp.getLength());
+
+        int n=Integer.parseInt(input);int a=0,b=1;String res="";for(int i=0;i<n;i++){res+=a+" ";int c=a+b;a=b;b=c;}String result=res;
+
+        byte[] send = result.getBytes();
+        DatagramPacket dpSend = new DatagramPacket(send, send.length, group, 5000);
+        ms.send(dpSend);
+
+        ms.leaveGroup(group);
+        ms.close();
+    }
+}
+
+class Client {
+    public static void main(String[] args) throws Exception {
+        MulticastSocket ms = new MulticastSocket(5000);
+        InetAddress group = InetAddress.getByName("230.0.0.1");
+        ms.joinGroup(group);
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter range: "); String msg=br.readLine();
+
+        byte[] send = msg.getBytes();
+        DatagramPacket dp = new DatagramPacket(send, send.length, group, 5000);
+        ms.send(dp);
+
+        byte[] buf = new byte[1024];
+        DatagramPacket dp2 = new DatagramPacket(buf, buf.length);
+        ms.receive(dp2);
+
+        System.out.println("Output: " + new String(dp2.getData(),0,dp2.getLength()));
+
+        ms.leaveGroup(group);
+        ms.close();
+    }
+}
